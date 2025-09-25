@@ -5,10 +5,13 @@ import user from "../models/user.js"
 const rateLimiter = async (req , res , next) => {
 	
 try {
+	console.log("RateLimiter key:", req.user?._id?.toString());
+
 	const userId = req.user._id.toString();
     const { success, limit, remaining, reset } = await rateLimit.limit(
       `ratelimit_${userId}`
     );
+	
 
     // Debug log: user + limiter state
     console.log("Rate limit check:", {

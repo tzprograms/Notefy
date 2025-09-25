@@ -7,6 +7,7 @@ import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
+import authMiddleware from "./middleware/auth.js"; 
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -27,13 +28,13 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.use(express.json());
-app.use(rateLimiter);
 
 // ----------------- Routes -----------------
 
 // Auth first, then notes
 app.use("/api/auth", authRoutes);
-app.use("/api/notes", notesRoutes);
+app.use("/api/notes", authMiddleware, rateLimiter, notesRoutes);
+
 
 // ----------------- Serve Frontend in Production -----------------
 
