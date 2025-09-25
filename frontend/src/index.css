@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Prevent horizontal overflow on small screens */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Always include proper scaling */
+html {
+  box-sizing: border-box;
+}
+
+/* Make all elements respect box sizing */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Images and videos never overflow container */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

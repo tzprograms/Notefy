@@ -1,10 +1,23 @@
 import rateLimit from "../config/upstash.js"
+import user from "../models/user.js"
 
 
 const rateLimiter = async (req , res , next) => {
 	
 try {
-	const { success } = await rateLimit.limit("my limit key")
+	const userId = req.user._id.toString();
+    const { success, limit, remaining, reset } = await rateLimit.limit(
+      `ratelimit_${userId}`
+    );
+
+    // Debug log: user + limiter state
+    console.log("Rate limit check:", {
+      userId,
+      success,
+      limit,
+      remaining,
+      reset,
+    });
 
 	if (!success){
 		return res.status(429).json({

@@ -1,6 +1,6 @@
 import { ZapIcon } from "lucide-react";
 
-const RateLimitedUI = () => {
+const RateLimited = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Glassy Container */}
@@ -36,4 +36,4 @@ const RateLimitedUI = () => {
   );
 };
 
-export default RateLimitedUI;
+export default RateLimited;

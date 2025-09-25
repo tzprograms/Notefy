@@ -11,18 +11,18 @@ import toast from 'react-hot-toast';
 
 
 const HomePage = () => {
-	const [isRateLimited , setIsRateLimited] = useState(false);
+	const [isRateLimited , setIsRateLimited] = useState(true);
 	const [notes , setNotes] = useState([]);
 	const [loading , setLoading] = useState(true)
 	
-
+  
 	useEffect(() => {
     const fetchNotes = async () => {
       try {
         const res = await api.get("/notes");
         console.log(res.data);
         setNotes(res.data);
-        setIsRateLimited(false);
+        setIsRateLimited(true);
       } catch (error) {
 		    console.log("API response:", res.data);
         console.log("Error fetching notes");

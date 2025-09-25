@@ -9,14 +9,15 @@ export default async function auth(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // decoded should contain { id: user._id } from when you signed the token
+
+    
     const user = await User.findById(decoded.id).select("-password");
 
     if (!user) {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // ✅ attaches user object so req.user._id works
+    req.user = user; 
     next();
   } catch (err) {
     console.error("JWT verification failed:", err.message);
