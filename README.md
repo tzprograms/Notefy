@@ -72,3 +72,11 @@
    ```bash
    git clone https://github.com/yourusername/notefy.git
    cd notefy
+
+2. **Build the application**
+   ```bash
+   npm run build
+   
+2. **Run the server**
+   ```bash
+   npm run start
